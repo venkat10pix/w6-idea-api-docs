@@ -21,7 +21,7 @@ This repository contains the official documentation for the Idea Tracker API. Th
 
 ## 📖 How to Use
 
-Simply open `api-docs/index.html` in your favorite web browser to view the documentation locally.
+Simply open `docs/index.html` in your favorite web browser to view the documentation locally.
 
 ---
 *Created with ❤️ for the Idea Tracker project.*
