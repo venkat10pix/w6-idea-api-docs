@@ -1,0 +1,10 @@
+# Standard .gitignore for Web Projects
+node_modules/
+dist/
+.env
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/
+tmp/

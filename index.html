@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Capture and display team ideas instantly."
+    />
+    <title>Idea Tracker | Innovate Together</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- Header Section -->
+      <header class="app-header">
+        <div class="logo">
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM11 19.93C7.05 19.43 4 16.05 4 12C4 7.95 7.05 4.57 11 4.07V19.93ZM13 4.07C16.95 4.57 20 7.95 20 12C20 16.05 16.95 19.43 13 19.93V4.07Z"
+              fill="url(#gradient)"
+            />
+            <defs>
+              <linearGradient
+                id="gradient"
+                x1="2"
+                y1="2"
+                x2="22"
+                y2="22"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop stop-color="#8B5CF6" />
+                <stop offset="1" stop-color="#3B82F6" />
+              </linearGradient>
+            </defs>
+          </svg>
+          <h1>IdeaTracker</h1>
+        </div>
+        <p class="tagline">Capture, share, and track your team's brilliance.</p>
+      </header>
+
+      <main class="main-content">
+        <!-- Form Section -->
+        <section class="form-section">
+          <div class="glass-panel">
+            <h2>Submit a New Idea</h2>
+            <p class="section-desc">
+              Got a spark? Let's bring it to life. Fill out the details below.
+            </p>
+
+            <form id="idea-form" novalidate>
+              <div class="form-group">
+                <label for="idea-title"
+                  >Idea Title
+                  <span class="required" aria-hidden="true">*</span></label
+                >
+                <input
+                  type="text"
+                  id="idea-title"
+                  name="idea-title"
+                  maxlength="50"
+                  placeholder="e.g. Implement AI Chatbot"
+                  aria-required="true"
+                  aria-describedby="title-error"
+                />
+                <div
+                  id="title-error"
+                  class="error-message"
+                  aria-live="polite"
+                ></div>
+                <div class="char-count"><span id="title-count">0</span>/50</div>
+              </div>
+
+              <div class="form-group">
+                <label for="idea-desc"
+                  >Description
+                  <span class="required" aria-hidden="true">*</span></label
+                >
+                <textarea
+                  id="idea-desc"
+                  name="idea-desc"
+                  rows="5"
+                  maxlength="500"
+                  placeholder="Describe how this idea works and the value it brings..."
+                  aria-required="true"
+                  aria-describedby="desc-error"
+                ></textarea>
+                <div
+                  id="desc-error"
+                  class="error-message"
+                  aria-live="polite"
+                ></div>
+                <div class="char-count"><span id="desc-count">0</span>/500</div>
+              </div>
+
+              <button type="submit" class="submit-btn" id="submit-btn">
+                <span>Submit Idea</span>
+                <div class="spinner" id="spinner"></div>
+              </button>
+            </form>
+          </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section class="gallery-section">
+          <div class="gallery-header">
+            <h2>Idea Board</h2>
+            <div class="badge" id="idea-count-badge">0 Ideas</div>
+          </div>
+
+          <div id="empty-state" class="empty-state">
+            <div class="empty-icon">💡</div>
+            <h3>No ideas yet!</h3>
+            <p>Be the first to submit a brilliant idea to the board.</p>
+          </div>
+
+          <div id="idea-gallery" class="idea-gallery" aria-live="polite">
+            <!-- Idea cards will be injected here -->
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

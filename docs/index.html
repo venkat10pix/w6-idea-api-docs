@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idea Tracker API | Documentation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* slate-900 */
+        }
+        code, pre {
+            font-family: 'Fira Code', monospace;
+        }
+        .neon-border {
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+        }
+        .neon-text {
+            text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #334155;
+        }
+    </style>
+</head>
+<body class="text-slate-300 antialiased selection:bg-blue-500/30 selection:text-blue-200">
+
+    <!-- Mobile Menu Toggle -->
+    <div class="lg:hidden fixed bottom-6 right-6 z-50">
+        <button id="menu-toggle" class="p-4 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-500 transition-colors">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+        </button>
+    </div>
+
+    <div class="flex">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="fixed inset-y-0 left-0 bg-slate-900 border-r border-slate-800 w-64 lg:w-72 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out z-40">
+            <div class="px-8 py-10">
+                <div class="flex items-center gap-3 mb-10">
+                    <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/20">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <div>
+                        <h1 class="text-white font-bold text-xl tracking-tight">IdeaTracker <span class="text-blue-500">API</span></h1>
+                        <p class="text-xs text-slate-500 font-medium tracking-widest uppercase">Documentation</p>
+                    </div>
+                </div>
+
+                <nav class="space-y-8">
+                    <div>
+                        <h3 class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-4">Getting Started</h3>
+                        <ul class="space-y-3">
+                            <li><a href="#introduction" class="text-sm hover:text-blue-400 transition-colors flex items-center gap-2 pt-1 border-l-2 border-transparent hover:border-blue-500/50 pl-3">Introduction</a></li>
+                            <li><a href="#authentication" class="text-sm hover:text-blue-400 transition-colors flex items-center gap-2 pt-1 border-l-2 border-transparent hover:border-blue-500/50 pl-3">Authentication</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-4">API Endpoints</h3>
+                        <ul class="space-y-3">
+                            <li>
+                                <a href="#get-ideas" class="text-sm hover:text-blue-400 transition-colors flex items-center gap-2 pt-1 border-l-2 border-transparent hover:border-blue-500/50 pl-3">
+                                    <span class="text-[10px] bg-green-500/10 text-green-400 px-1.5 py-0.5 rounded font-bold">GET</span>
+                                    List Ideas
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#post-ideas" class="text-sm hover:text-blue-400 transition-colors flex items-center gap-2 pt-1 border-l-2 border-transparent hover:border-blue-500/50 pl-3">
+                                    <span class="text-[10px] bg-blue-500/10 text-blue-400 px-1.5 py-0.5 rounded font-bold">POST</span>
+                                    Create Idea
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#get-idea-id" class="text-sm hover:text-blue-400 transition-colors flex items-center gap-2 pt-1 border-l-2 border-transparent hover:border-blue-500/50 pl-3">
+                                    <span class="text-[10px] bg-green-500/10 text-green-400 px-1.5 py-0.5 rounded font-bold">GET</span>
+                                    Get Idea Details
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#delete-idea" class="text-sm hover:text-blue-400 transition-colors flex items-center gap-2 pt-1 border-l-2 border-transparent hover:border-blue-500/50 pl-3">
+                                    <span class="text-[10px] bg-red-500/10 text-red-400 px-1.5 py-0.5 rounded font-bold">DELETE</span>
+                                    Remove Idea
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="lg:ml-72 flex-1 p-8 lg:p-16 max-w-5xl">
+            
+            <!-- Introduction Section -->
+            <section id="introduction" class="mb-20 scroll-mt-24">
+                <h2 class="text-4xl font-extrabold text-white mb-6">Introduction</h2>
+                <div class="prose prose-invert max-w-none">
+                    <p class="text-lg text-slate-400 leading-relaxed mb-8">
+                        Welcome to the <span class="text-blue-400 font-semibold">Idea Tracker API</span> documentation. This API allows developers to programmatically interact with the Idea Tracker platform, enabling the creation, retrieval, and management of brilliant team ideas.
+                    </p>
+                    <div class="bg-blue-500/10 border border-blue-500/20 rounded-2xl p-6 flex gap-4">
+                        <div class="text-blue-500 pt-1">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-semibold mb-1">Base URL</h4>
+                            <p class="text-blue-400 font-mono text-sm break-all">https://api.ideatracker.io/v1</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="border-slate-800 mb-20">
+
+            <!-- Authentication Section -->
+            <section id="authentication" class="mb-20 scroll-mt-24">
+                <h2 class="text-3xl font-bold text-white mb-6">Authentication</h2>
+                <p class="text-slate-400 mb-6">
+                    All API requests must be authenticated using a Bearer token in the <code class="text-blue-400 px-1.5 py-0.5 bg-blue-400/10 rounded">Authorization</code> header.
+                </p>
+                <div class="bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden mb-6">
+                    <div class="flex items-center justify-between px-4 py-3 bg-slate-900/50 border-b border-slate-800">
+                        <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Example Request Header</span>
+                    </div>
+                    <div class="p-6">
+                        <pre class="text-sm text-blue-300 overflow-x-auto"><code>Authorization: Bearer YOUR_API_TOKEN</code></pre>
+                    </div>
+                </div>
+                <div class="bg-amber-500/10 border border-amber-500/20 rounded-2xl p-6 flex gap-4">
+                    <div class="text-amber-500 pt-1">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    </div>
+                    <div>
+                        <p class="text-sm text-amber-200/80">Keep your API tokens secure. Do not share them or commit them to public version control systems.</p>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="border-slate-800 mb-20">
+
+            <!-- Endpoints Section -->
+            <section id="endpoints" class="space-y-24 scroll-mt-24">
+                <h2 class="text-3xl font-bold text-white mb-12">API Endpoints</h2>
+
+                <!-- GET /ideas -->
+                <div id="get-ideas" class="scroll-mt-24">
+                    <div class="flex flex-wrap items-center gap-3 mb-4">
+                        <span class="px-3 py-1 bg-green-500/10 text-green-400 rounded-lg text-xs font-bold uppercase tracking-wider border border-green-500/20">GET</span>
+                        <h3 class="text-2xl font-bold text-white">List all Ideas</h3>
+                    </div>
+                    <p class="text-slate-400 mb-8">Retrieves a list of all ideas submitted to the board, sorted by most recent first.</p>
+                    
+                    <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Parameters</h4>
+                            <p class="text-sm italic text-slate-500">None required.</p>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Example Response</h4>
+                            <div class="bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden">
+                                <div class="px-4 py-2 bg-slate-900/50 border-b border-slate-800 flex justify-between">
+                                    <span class="text-[10px] text-slate-500 uppercase font-bold">200 OK</span>
+                                </div>
+                                <pre class="p-6 text-xs text-blue-300 leading-relaxed overflow-x-auto"><code>[
+  {
+    "id": "7f12a",
+    "title": "Implement AI Chatbot",
+    "description": "Add a smart assistant to help users...",
+    "createdAt": "2024-03-20T14:30:00Z"
+  },
+  {
+    "id": "9b34c",
+    "title": "DarkMode Toggle",
+    "description": "Allow users to switch between themes.",
+    "createdAt": "2024-03-19T09:15:00Z"
+  }
+]</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- POST /ideas -->
+                <div id="post-ideas" class="scroll-mt-24">
+                    <div class="flex flex-wrap items-center gap-3 mb-4">
+                        <span class="px-3 py-1 bg-blue-500/10 text-blue-400 rounded-lg text-xs font-bold uppercase tracking-wider border border-blue-500/20">POST</span>
+                        <h3 class="text-2xl font-bold text-white">Create a New Idea</h3>
+                    </div>
+                    <p class="text-slate-400 mb-8">Submits a new idea to the gallery. Validates title (max 50 chars) and description (max 500 chars).</p>
+                    
+                    <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Request Body</h4>
+                            <div class="bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden">
+                                <pre class="p-6 text-xs text-blue-300 leading-relaxed overflow-x-auto"><code>{
+  "title": "Global Search",
+  "description": "Add a search bar to filter ideas."
+}</code></pre>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Response</h4>
+                            <div class="bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden">
+                                <div class="px-4 py-2 bg-slate-900/50 border-b border-slate-800 flex justify-between">
+                                    <span class="text-[10px] text-slate-500 uppercase font-bold">201 Created</span>
+                                </div>
+                                <pre class="p-6 text-xs text-blue-300 leading-relaxed overflow-x-auto"><code>{
+  "success": true,
+  "id": "8e45f",
+  "message": "Idea successfully added."
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GET /ideas/:id -->
+                <div id="get-idea-id" class="scroll-mt-24">
+                    <div class="flex flex-wrap items-center gap-3 mb-4">
+                        <span class="px-3 py-1 bg-green-500/10 text-green-400 rounded-lg text-xs font-bold uppercase tracking-wider border border-green-500/20">GET</span>
+                        <h3 class="text-2xl font-bold text-white">Get Idea Details</h3>
+                    </div>
+                    <p class="text-slate-400 mb-8">Retrieves complete information for a specific idea by its unique ID.</p>
+                    
+                    <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Path Variables</h4>
+                            <table class="w-full text-sm text-left">
+                                <thead class="text-slate-500 border-b border-slate-800">
+                                    <tr>
+                                        <th class="py-2 pr-4">Property</th>
+                                        <th class="py-2">Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-slate-400">
+                                    <tr class="border-b border-slate-800/50">
+                                        <td class="py-3 pr-4 font-mono text-blue-400">id</td>
+                                        <td class="py-3 italic">Unique identifier of the idea.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Example Response</h4>
+                            <div class="bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden">
+                                <pre class="p-6 text-xs text-blue-300 leading-relaxed overflow-x-auto"><code>{
+  "id": "7f12a",
+  "title": "Implement AI Chatbot",
+  "description": "Add a smart assistant...",
+  "createdAt": "2024-03-20T14:30:00Z"
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DELETE /ideas/:id -->
+                <div id="delete-idea" class="scroll-mt-24 pb-20">
+                    <div class="flex flex-wrap items-center gap-3 mb-4">
+                        <span class="px-3 py-1 bg-red-500/10 text-red-400 rounded-lg text-xs font-bold uppercase tracking-wider border border-red-500/20">DELETE</span>
+                        <h3 class="text-2xl font-bold text-white">Remove an Idea</h3>
+                    </div>
+                    <p class="text-slate-400 mb-8">Deletes a specific idea from the tracking board. This action is irreversible.</p>
+                    
+                    <div class="bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden max-w-md">
+                        <div class="px-4 py-2 bg-slate-900/50 border-b border-slate-800 flex justify-between">
+                            <span class="text-[10px] text-slate-500 uppercase font-bold">204 No Content</span>
+                        </div>
+                        <div class="p-6 text-xs text-slate-500 italic">
+                            Empty response body.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="pt-20 border-t border-slate-800 text-slate-500 text-sm flex flex-col md:flex-row justify-between items-center gap-4">
+                <p>&copy; 2026 IdeaTracker Inc. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-blue-400">Status</a>
+                    <a href="#" class="hover:text-blue-400">Support</a>
+                    <a href="#" class="hover:text-blue-400">Privacy</a>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <script>
+        const btn = document.getElementById('menu-toggle');
+        const sidebar = document.getElementById('sidebar');
+
+        btn.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+        });
+
+        // Close sidebar when clicking a link on mobile
+        document.querySelectorAll('#sidebar a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth < 1024) {
+                    sidebar.classList.add('-translate-x-full');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
