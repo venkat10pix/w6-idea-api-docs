@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Idea Tracker API | Documentation</title>
+<<<<<<< HEAD
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -99,10 +100,108 @@
                         </ul>
                     </div>
                 </nav>
+=======
+    <meta name="description" content="Official documentation for the Idea Tracker API - manage your creative sparks effortlessly.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-blue: #38bdf8;
+            --neon-glow: rgba(56, 189, 248, 0.5);
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0f172a; /* slate-900 */
+        }
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .neon-text {
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px var(--neon-glow);
+        }
+        .neon-border {
+            border-color: rgba(56, 189, 248, 0.2);
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.05);
+        }
+        .neon-border:hover {
+            border-color: rgba(56, 189, 248, 0.5);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.1);
+        }
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .sidebar-link.active {
+            color: var(--neon-blue);
+            background: rgba(56, 189, 248, 0.1);
+            border-right: 2px solid var(--neon-blue);
+        }
+        pre {
+            background: #010409 !important;
+        }
+        code {
+            font-family: 'JetBrains Mono', monospace !important;
+        }
+    </style>
+</head>
+<body class="text-slate-300 selection:bg-sky-500/30 selection:text-sky-200">
+
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-72 bg-slate-900/80 backdrop-blur-xl border-r border-slate-800 transition-transform duration-300 transform md:translate-x-0 -translate-x-full">
+            <div class="flex flex-col h-full">
+                <div class="p-8 flex items-center gap-3">
+                    <div class="w-10 h-10 bg-sky-500 rounded-xl flex items-center justify-center shadow-lg shadow-sky-500/20">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="text-xl font-extrabold text-white tracking-tight">IDEA<span class="text-sky-400">TRACKER</span></span>
+                        <p class="text-[10px] uppercase tracking-[0.2em] text-slate-500 font-bold">API v1.0 Docs</p>
+                    </div>
+                </div>
+
+                <nav class="flex-1 px-6 space-y-2 overflow-y-auto pt-4">
+                    <div class="text-[11px] uppercase tracking-widest text-slate-500 font-bold mb-4 px-2">Navigation</div>
+                    <a href="#introduction" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-800 hover:text-white transition-all group">
+                        <svg class="w-4 h-4 opacity-50 group-hover:opacity-100" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                        <span>Introduction</span>
+                    </a>
+                    <a href="#authentication" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-800 hover:text-white transition-all group">
+                        <svg class="w-4 h-4 opacity-50 group-hover:opacity-100" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                        <span>Authentication</span>
+                    </a>
+                    
+                    <div class="mt-10 mb-4 px-2">
+                        <div class="text-[11px] uppercase tracking-widest text-slate-500 font-bold">Endpoints</div>
+                    </div>
+                    
+                    <a href="#get-ideas" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-800 hover:text-white transition-all group">
+                        <span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">GET</span>
+                        <span>List Ideas</span>
+                    </a>
+                    <a href="#post-ideas" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-800 hover:text-white transition-all group">
+                        <span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-sky-500/10 text-sky-400 border border-sky-500/20">POST</span>
+                        <span>Create Idea</span>
+                    </a>
+                </nav>
+
+                <div class="p-8 border-t border-slate-800">
+                    <div class="bg-slate-800/50 rounded-xl p-4 border border-slate-700/50">
+                        <p class="text-xs text-slate-400 leading-relaxed italic">Need help? Join our discord for developer support.</p>
+                    </div>
+                </div>
+>>>>>>> c2e8bde5d3ad31fee6d4c54b48e6a8ecd4e6b592
             </div>
         </aside>
 
         <!-- Main Content -->
+<<<<<<< HEAD
         <main class="lg:ml-72 flex-1 p-8 lg:p-16 max-w-5xl">
             
             <!-- Introduction Section -->
@@ -296,10 +395,209 @@
                     <a href="#" class="hover:text-blue-400">Privacy</a>
                 </div>
             </footer>
+=======
+        <main class="flex-1 md:ml-72 min-h-screen">
+            <!-- Top Navbar (Mobile only) -->
+            <div class="md:hidden sticky top-0 z-40 bg-slate-900/80 backdrop-blur-md border-b border-slate-800 p-4 flex items-center justify-between">
+                <span class="font-bold text-white tracking-tight">IDEA<span class="text-sky-400">TRACKER</span></span>
+                <button onclick="document.getElementById('sidebar').classList.toggle('-translate-x-full')" class="p-2 text-slate-400 hover:text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
+                </button>
+            </div>
+
+            <div class="max-w-5xl mx-auto px-6 py-12 md:px-12 md:py-20 lg:py-28">
+                
+                <!-- Introduction -->
+                <section id="introduction" class="mb-32 scroll-mt-32">
+                    <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-8 tracking-tight">
+                        Power your <span class="neon-text italic">creativity</span> with our API.
+                    </h1>
+                    <div class="prose prose-invert prose-lg max-w-none text-slate-400 leading-relaxed">
+                        <p>The Idea Tracker API is a professional-grade interface designed for developers to build powerful applications around human creativity. Organize thoughts, categorize sparks of genius, and sync them across all your devices.</p>
+                        <p class="mt-4">Our RESTful architecture ensures predictable URL structures and utilizes standard HTTP response codes, JSON, and authentication.</p>
+                    </div>
+                    
+                    <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="p-6 rounded-2xl bg-slate-800/30 border border-slate-800 hover:border-sky-500/50 transition-all">
+                            <h3 class="font-bold text-white mb-2">Blazing Fast</h3>
+                            <p class="text-sm text-slate-500">Global edge network with sub-50ms latency for all API requests.</p>
+                        </div>
+                        <div class="p-6 rounded-2xl bg-slate-800/30 border border-slate-800 hover:border-sky-500/50 transition-all">
+                            <h3 class="font-bold text-white mb-2">Secure</h3>
+                            <p class="text-sm text-slate-500">Enterprise grade TLS 1.3 encryption and scoped API tokens.</p>
+                        </div>
+                        <div class="p-6 rounded-2xl bg-slate-800/30 border border-slate-800 hover:border-sky-500/50 transition-all">
+                            <h3 class="font-bold text-white mb-2">Scalable</h3>
+                            <p class="text-sm text-slate-500">Capable of handling millions of requests per second with ease.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Authentication -->
+                <section id="authentication" class="mb-32 scroll-mt-32">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="h-px flex-1 bg-slate-800"></div>
+                        <h2 class="text-3xl font-bold text-white uppercase tracking-widest text-center px-4">Authentication</h2>
+                        <div class="h-px flex-1 bg-slate-800"></div>
+                    </div>
+                    
+                    <p class="text-slate-400 mb-8 max-w-3xl">All API requests require an API key to be sent in the <code>Authorization</code> header. Your keys carry many privileges, so please keep them secure.</p>
+                    
+                    <div class="glass-panel rounded-2xl overflow-hidden border border-slate-800 neon-border transition-all">
+                        <div class="bg-slate-800/50 px-6 py-3 flex items-center justify-between border-b border-slate-700/50">
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-widest mono">Request Header</span>
+                            <span class="text-[10px] text-sky-400 font-bold px-2 py-0.5 rounded bg-sky-500/10 border border-sky-500/20">REQUIRED</span>
+                        </div>
+                        <div class="p-6 mono text-sm leading-relaxed text-sky-300">
+                            <pre class="overflow-x-auto"><code class="text-sky-300">Authorization: Bearer <span class="text-slate-500 italic">your_api_key_here</span></code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Endpoints -->
+                <div class="space-y-32">
+                    <h2 class="text-3xl font-bold text-white mb-12 flex items-center gap-4">
+                        <span class="w-2 h-10 bg-sky-500 rounded-full"></span>
+                        REST Endpoints
+                    </h2>
+
+                    <!-- GET /api/ideas -->
+                    <section id="get-ideas" class="scroll-mt-32 group">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                            <div>
+                                <div class="flex items-center gap-4 mb-6">
+                                    <span class="px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded text-xs font-bold border border-emerald-500/30">GET</span>
+                                    <h3 class="text-2xl font-bold text-white mono">/api/ideas</h3>
+                                </div>
+                                <p class="text-slate-400 mb-6 font-medium">Retrieve a paginated list of all created ideas.</p>
+                                <p class="text-sm text-slate-500 leading-relaxed mb-8">This endpoint returns a list of idea objects. You can filter the results by category or sort them by date using query parameters.</p>
+                                
+                                <div class="space-y-4">
+                                    <h4 class="text-xs font-bold text-slate-500 uppercase tracking-widest">Query Parameters</h4>
+                                    <div class="border-l-2 border-slate-800 pl-4 space-y-4">
+                                        <div>
+                                            <span class="text-sky-400 font-bold mono text-sm">category</span>
+                                            <span class="text-xs text-slate-600 block">String - Filter by specific category</span>
+                                        </div>
+                                        <div>
+                                            <span class="text-sky-400 font-bold mono text-sm">limit</span>
+                                            <span class="text-xs text-slate-600 block">Integer - Number of results (default: 20)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="glass-panel rounded-2xl overflow-hidden border border-slate-800">
+                                <div class="bg-slate-800/50 px-6 py-3 flex items-center justify-between border-b border-slate-700/50">
+                                    <span class="text-xs font-bold text-slate-400 px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">200 OK</span>
+                                    <span class="text-[10px] text-slate-500 mono">JSON Response</span>
+                                </div>
+                                <div class="p-6 mono text-[13px] leading-relaxed">
+                                    <pre class="overflow-x-auto"><code class="text-slate-300">{
+  "status": "success",
+  "data": [
+    {
+      "id": "idea_84k2",
+      "title": "Quantum Coffee Maker",
+      "category": "Appliances",
+      "priority": "High",
+      "created_at": "2024-03-12T10:00:00Z"
+    },
+    {
+      "id": "idea_91p4",
+      "title": "Solar Powered Umbrella",
+      "category": "Outdoors",
+      "priority": "Medium",
+      "created_at": "2024-03-11T15:30:00Z"
+    }
+  ],
+  "pagination": {
+    "has_more": false,
+    "total": 2
+  }
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- POST /api/ideas -->
+                    <section id="post-ideas" class="scroll-mt-32">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 text-balance">
+                            <div>
+                                <div class="flex items-center gap-4 mb-6">
+                                    <span class="px-3 py-1 bg-sky-500/20 text-sky-400 rounded text-xs font-bold border border-sky-500/30">POST</span>
+                                    <h3 class="text-2xl font-bold text-white mono">/api/ideas</h3>
+                                </div>
+                                <p class="text-slate-400 mb-6 font-medium">Create a new genius idea in the system.</p>
+                                <p class="text-sm text-slate-500 leading-relaxed mb-8">Send a JSON payload with the details of your idea. The <code>title</code> and <code>category</code> fields are mandatory.</p>
+                                
+                                <div class="p-6 bg-amber-500/5 border border-amber-500/20 rounded-2xl">
+                                    <div class="flex items-center gap-3 mb-2">
+                                        <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                                        <span class="text-xs font-bold text-amber-500 uppercase tracking-widest">Rate Limit</span>
+                                    </div>
+                                    <p class="text-sm text-amber-500/80">Default rate limit is 100 requests per minute. Contact sales for higher quotas.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-6">
+                                <!-- Request Payload -->
+                                <div class="glass-panel rounded-2xl overflow-hidden border border-slate-800">
+                                    <div class="bg-slate-800/50 px-6 py-3 flex items-center justify-between border-b border-slate-700/50">
+                                        <span class="text-xs font-bold text-slate-400 uppercase tracking-widest mono">Request Payload</span>
+                                    </div>
+                                    <div class="p-6 mono text-[13px]">
+                                        <pre class="overflow-x-auto"><code class="text-slate-300">{
+  "title": "Bio-degradable Drone",
+  "description": "A drone made from mycelium that decomposes after use.",
+  "category": "Sustainability",
+  "priority": "High"
+}</code></pre>
+                                    </div>
+                                </div>
+
+                                <!-- Response Body -->
+                                <div class="glass-panel rounded-2xl overflow-hidden border border-slate-800">
+                                    <div class="bg-slate-800/50 px-6 py-3 flex items-center justify-between border-b border-slate-700/50">
+                                        <span class="text-xs font-bold text-sky-400 px-2 py-0.5 rounded bg-sky-500/10 border border-sky-500/20">201 Created</span>
+                                    </div>
+                                    <div class="p-6 mono text-[13px]">
+                                        <pre class="overflow-x-auto"><code class="text-slate-300">{
+  "status": "success",
+  "data": {
+    "id": "idea_xyz123",
+    "created_at": "2024-03-12T11:45:00Z"
+  }
+}</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Footer -->
+                <footer class="mt-40 pt-12 border-t border-slate-800">
+                    <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+                        <div class="text-center md:text-left">
+                            <span class="font-bold text-white tracking-tight">IDEA<span class="text-sky-400">TRACKER</span></span>
+                            <p class="text-slate-600 text-sm mt-2">© 2024 Idea Tracker Inc. Built for geniuses.</p>
+                        </div>
+                        <div class="flex gap-6">
+                            <a href="#" class="text-slate-500 hover:text-white transition-colors">GitHub</a>
+                            <a href="#" class="text-slate-500 hover:text-white transition-colors">Twitter</a>
+                            <a href="#" class="text-slate-500 hover:text-white transition-colors">Discord</a>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+>>>>>>> c2e8bde5d3ad31fee6d4c54b48e6a8ecd4e6b592
         </main>
     </div>
 
     <script>
+<<<<<<< HEAD
         const btn = document.getElementById('menu-toggle');
         const sidebar = document.getElementById('sidebar');
 
@@ -312,6 +610,25 @@
             link.addEventListener('click', () => {
                 if (window.innerWidth < 1024) {
                     sidebar.classList.add('-translate-x-full');
+=======
+        // Simple scroll spy logic
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.sidebar-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+>>>>>>> c2e8bde5d3ad31fee6d4c54b48e6a8ecd4e6b592
                 }
             });
         });
